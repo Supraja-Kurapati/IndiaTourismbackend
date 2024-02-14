@@ -26,6 +26,5 @@ console.log("Connected to database from db.js");
 }
 
 const databasename=client.db("Tourism")
-// const dbnametwo=client.db("ECOM")
 module.exports={connection,databasename}
 

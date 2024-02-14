@@ -8,7 +8,7 @@ const auth=(req,res,next)=>{
 const token=data.split(' ')[1]
 console.log(token)
     if(token){
-        jwt.verify(token,secretkey,(err,decoded)=>{
+        jwt.verify(token,secretKey,(err,decoded)=>{
            if(err){
             return res.status(401).send({error:"Error in accessing Token"})
         }

@@ -1,6 +1,6 @@
 const bcrypt=require('bcryptjs')
 const jwt=require('jsonwebtoken')
-const secretkey="Tourism"
+const secretKey="Tourism"
 const saltRound=10;
 
 const {databasename}=require('../Config/db')
@@ -17,9 +17,9 @@ const register = async (req,res)=>{
     if(acc){
         return res.send({msg:"Email Already Exist"});
     }
-const insertdata=await userdetails.create(data)
+const insertdata=await userdetails.insertOne(data)
 
-const token=jwt.sign({user:data.email},secretkey)
+const token=jwt.sign({user:data.email},secretKey)
 res.send({msg:"user Registered successfully",token:token,insertdata:insertdata})
 }
 
@@ -32,7 +32,7 @@ const login=async(req,res)=>{
 
     
     if(login){
-        const token=jwt.sign({user:data.email},secretkey,{expiresIn:'3d'})
+        const token=jwt.sign({user:data.email},secretKey,{expiresIn:'3d'})
         console.log(login,"login");
      return res.send({msg:"Login Successful!",token:token})
     }
