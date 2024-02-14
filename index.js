@@ -1,9 +1,9 @@
 const express=require('express')
 const app=express();
+const router=require('./Routes/Routes')
 
 const cors=require('cors')
-const connectDb=require('./Config/db')
-const router=require('./Routes/Routes')
+const {connection}=require('./Config/db')
 
 app.use(cors({
     origin:'*'
@@ -16,6 +16,6 @@ app.use('/pages',router)
 
 
 app.listen(5031,()=>{
-    connectDb();
+    connection();
     console.log("Server Running on 5031");
 })

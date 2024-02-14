@@ -3,7 +3,8 @@ const jwt=require('jsonwebtoken')
 const secretkey="Tourism"
 const saltRound=10;
 
-const userdetails=require('../Model/UserModel')
+const {databasename}=require('../Config/db')
+const userdetails=databasename.collection("userdetails")
 
 const register = async (req,res)=>{
     data=req.body
