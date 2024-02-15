@@ -5,6 +5,30 @@ const saltRound=10;
 
 const {databasename}=require('../Config/db')
 const userdetails=databasename.collection("userdetails")
+ const TourPackages=databasename.collection("TourPackages")
+
+const TourData=async(req,res)=>{
+    const TData=await TourPackages.find().toArray()
+    console.log(TData);
+     res.send(TData)
+}
+const TourIndividual=async(req,res)=>{
+    const id=req.params.id
+    try{
+    const TData=await TourPackages.findOne({_id:id}).toArray
+    if(TData){
+console.log(id);
+    console.log(TData);
+ res.send(TData)
+    }
+    else{
+        res.status(404).send("TData Not Found")
+    }
+}
+catch(err){
+    console.log(err,"Error in Fetching")
+}
+}
 
 const register = async (req,res)=>{
     data=req.body
@@ -47,4 +71,4 @@ else{
 
 }
 
-module.exports={register,login}
+module.exports={register,login,TourData,TourIndividual}
