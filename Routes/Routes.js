@@ -1,14 +1,17 @@
 const express= require('express')
 const router=express.Router();
-const {register,login, TourData, TourIndividual} =require ('../Controller/Api');
+const {register,login, TourData, PlacesData, PackageData, packdata} =require ('../Controller/Api');
 const auth = require('../MiddleWare/Auth');
 
 
 router.post('/register',register)
 
 router.get('/tourPacakges',TourData)
+router.get('/places',PlacesData)
 
- router.get('/tourPacakges/:id',TourIndividual)
+router.get('/packages',PackageData)
+router.get('/packs',packdata)
+//  router.get('/tourPacakges/:id',TourIndividual)
 
  router.post('/login',login)
 

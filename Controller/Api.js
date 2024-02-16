@@ -5,30 +5,44 @@ const saltRound=10;
 
 const {databasename}=require('../Config/db')
 const userdetails=databasename.collection("userdetails")
- const TourPackages=databasename.collection("TourPackages")
 
+//------IndiaTourism Route 
+ const TourPackages=databasename.collection("TourPackages")
+ const places=databasename.collection("placesofState")
+// --------TourPackages Route
+const Packages=databasename.collection("Packages")
+const packs=databasename.collection("packs")
+
+
+
+// IndiaTourism Route
 const TourData=async(req,res)=>{
     const TData=await TourPackages.find().toArray()
     console.log(TData);
      res.send(TData)
 }
-const TourIndividual=async(req,res)=>{
-    const id=req.params.id
-    try{
-    const TData=await TourPackages.findOne({_id:id}).toArray
-    if(TData){
-console.log(id);
-    console.log(TData);
- res.send(TData)
-    }
-    else{
-        res.status(404).send("TData Not Found")
-    }
+
+const PlacesData=async(req,res)=>{
+    const PData=await places.find().toArray()
+    console.log(PData);
+    res.send(PData)
 }
-catch(err){
-    console.log(err,"Error in Fetching")
+
+// TourPackages Route
+const PackageData=async(req,res)=>{
+    const package=await Packages.find().toArray()
+    console.log(package);
+    res.send(package)
 }
+
+const packdata=async(req,res)=>{
+    const pack=await packs.find().toArray()
+    console.log(pack);
+    res.send(pack)
 }
+
+
+
 
 const register = async (req,res)=>{
     data=req.body
@@ -71,4 +85,4 @@ else{
 
 }
 
-module.exports={register,login,TourData,TourIndividual}
+module.exports={register,login,TourData,PlacesData,PackageData,packdata}
